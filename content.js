@@ -22,5 +22,15 @@
     commentsList.filter(findHoundComments).map(hideHoundComments)
   }
 
-  hideHoundContent(CONVERSATION_TAB)
+  document.addEventListener('click', ({ target }) => {
+    if (!target.classList.includes('js-pjax-history-navigate')) {
+      return
+    }
+
+    if (/Conversation/.test(target.text)) {
+      hideHoundContent(CONVERSATION_TAB)
+    } else if (/Files\schanged/.test(target.text)) {
+      hideHoundContent(FILES_CHANGED_TAB)
+    }
+  })
 })()
