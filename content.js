@@ -10,11 +10,13 @@
   )
   const CONVERSATION_TAB = 'CONVERSATION_TAB'
   const FILES_CHANGED_TAB = 'FILES_CHANGED_TAB'
+  const NEWSLETTER = 'NEWSLETTER'
 
   const hideHoundContent = (tab) => {
     const tabCommentsSelector = {
       [CONVERSATION_TAB]: '.discussion-item',
-      [FILES_CHANGED_TAB]: '.js-quote-selection-container'
+      [FILES_CHANGED_TAB]: '.js-quote-selection-container',
+      [NEWSLETTER]: '.alert.issues_comment'
     }
     const comments = document.querySelectorAll(tabCommentsSelector[tab])
     const commentsList = convertToList(comments)
@@ -23,7 +25,7 @@
   }
 
   document.addEventListener('click', ({ target }) => {
-    if (!target.classList.includes('js-pjax-history-navigate')) {
+    if (!target.classList.contains('js-pjax-history-navigate')) {
       return
     }
 
